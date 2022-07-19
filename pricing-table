@@ -1,0 +1,689 @@
+<!-- BODY CONTENT SECTION START -->
+        
+    <div pardot-region="ERC" pardot-region-type="html" align="center" style="text-align: center;" id="calc-holder">
+
+        
+        <div id="calc-form">
+            <div id="calc-donations" class="calc-section">
+                <div class="calc-heading">How much are your average monthly&nbsp;donations?</div>
+                <div id="calc-donation-value">$40,000</div>
+                <input type="range" id="calc-donation-slider" name="calc-donation-slider" min="5000" step="5000" max="150000" value="40000" oninput="updateDonation(this.value)"><div class="calc-range-labels"><div>$5,000</div><div>$150,000</div></div>
+            </div>
+            <div id="calc-dcf" class="calc-section">
+                <div class="calc-heading" style="display:inline-block;">Donors cover processing fees?</div>
+                <label class="switch" style="margin-left: 15px;">
+                    <input type="checkbox" id="calc-dcf-checkbox" checked=""><span class="toggle"></span>
+                </label>
+                <div id="calc-dcf-percent">
+                    <div class="calc-subheading">% of donations with donor-covered fees—average&nbsp;is 30%:</div>
+                    <div id="calc-dcf-value">30%</div>
+                    <input type="range" id="calc-dcf-slider" name="calc-dcf-slider" min="0" step="5" max="100" value="30" oninput="updateCoveredFees(this.value)"><div class="calc-range-labels"><div>0%</div><div>100%</div></div>
+                </div>
+            </div>
+            <div id="calc-fees" class="calc-section last">
+                <div class="calc-heading">Subsplash Giving fees: $0/month</div>
+                <div class="calc-subheading">Unlike many online giving solutions, Subsplash Giving has no monthly subscription costs or hidden fees.</div>
+            </div>
+        </div>
+        <div id="calc-results">
+            <div id="calc-grow-curve" style="left: -816.66px;"></div>
+            <div class="calc-title">Your savings!</div>
+            <div id="calc-savings-holder">
+                <div class="calc-savings-col">
+                    <div class="results-heading">Your effective rate<span class="calc-info" data-tooltip="The &quot;effective rate&quot; is what your organization actually pays per transaction after all fees are included. The rate shown here assumes a subscription to a Subsplash Giving + Platform package.">ⓘ</span></div>
+                    <div id="calc-rate-value" class="calc-savings-value">1.34%</div>
+                </div>
+                <div class="calc-savings-col" style="margin-bottom: 20px !important;">
+                    <div class="results-heading">Savings with Subsplash Giving<span class="calc-info" data-tooltip="Compared to the average online giving solution processing rate of around 2.9%.">ⓘ</span></div>
+                    <div id="calc-savings-value" class="calc-savings-value">$561</div><span>/year</span>
+                </div>
+                <div class="calc-savings-col">
+                    <div class="results-heading">GrowCurve™ savings<span class="calc-info" data-tooltip="With our exclusive GrowCurve™ feature, your rates will automatically and continuously fall as your giving increases-to as low as 1.9% for cards and 0.5% for ACH.">ⓘ</span></div>
+                    <div id="calc-growcurve-value" class="calc-savings-value">$19</div><span>/year</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+		<!-- BODY CONTENT SECTION END -->
+    
+
+
+<style>
+  /* Media Queries Calculate */
+
+@media only screen and (min-width: 50px) and (max-width: 1215px) {
+.grid-2-columns.pricing-calculate {
+    grid-template-columns: 1fr;
+}
+}
+
+/* Media Queries */
+
+@media only screen and (min-width: 100px) and (max-width: 380px) {
+.mask {
+    max-width: 320px;
+}
+}
+
+#calc-grow-curve {
+    content: "";
+    position: absolute;
+    width: 1948px;
+    height: 1677px;
+    border: 380px solid rgba(255,255,255,.2);
+    border-radius: 5000px;
+    top: -793px;
+    left: -1120px;
+    box-shadow: inset 0 0 20px rgb(0 0 0 / 20%);
+    transition: left 0.3s ease-out;
+}
+    
+    /* Style CSS */
+#calc-holder {
+    font-family: 'proxima-nova', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#calc-holder > div {
+    padding: 20px;
+    flex-grow: 1;
+    max-width: 400px;
+    min-width: 370px !important;
+}
+
+.calc-section {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.calc-heading {
+    font-weight: 700 !important;
+    font-size: 19px;
+    color: #000;
+    margin-bottom: 15px;
+    line-height: 24px;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+#calc-donation-value, #calc-dcf-value {
+    color: #4f64ff;
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 700 !important;
+    font-family: 'Proxima Nova';
+}
+
+input[type=range] {
+    height: 6px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    position: relative;
+    max-width: 300px;
+}
+
+.calc-range-labels {
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    color: #54585A;
+    font-size: 15px;
+    max-width: 300px;
+    font-family: 'Proxima Nova';
+}
+
+.calc-section {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.calc-heading {
+    font-weight: 400;
+    font-size: 21px;
+    color: #000;
+    margin-bottom: 15px;
+    line-height: 24px;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+.toggle {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #7E7F82;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.toggle:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+#calc-dcf-percent {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    height: auto;
+    max-height: 200px;
+}
+
+.calc-subheading {
+    font-weight: 300;
+    line-height: 145%;
+    font-size: 16px;
+    color: #54585A;
+    margin-bottom: 16px;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+#calc-donation-value, #calc-dcf-value {
+    color: #4f64ff;
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-family: 'Proxima Nova';
+}
+
+input[type=range] {
+    height: 6px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    position: relative;
+    max-width: 300px;
+}
+
+.calc-range-labels {
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    color: #7E7F82;
+    font-size: 16px;
+    max-width: 300px;
+}
+
+.calc-section.last {
+    border-bottom: none;
+}
+
+.calc-section {
+    padding: 20px 0;
+}
+
+.calc-heading {
+    font-weight: 400;
+    font-size: 21px;
+    color: #000;
+    margin-bottom: 15px;
+    line-height: 24px;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+.calc-subheading {
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: 16px;
+    color: #54585A;
+    margin-bottom: 16px;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+#calc-holder > div {
+    padding: 20px;
+    flex-grow: 1;
+    max-width: 400px;
+    min-width: 300px;
+}
+
+#calc-results {
+    background-color: #4f64ff;
+    border-radius: 0px 20px 20px 0px;
+    padding: 20px;
+    color: #FFF;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+
+
+#calc-results div {
+    color: #FFF;
+}
+
+.calc-title {
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 1.5em;
+    margin-bottom: 40px;
+    margin-top: 30px;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+#calc-results div {
+    color: #FFF;
+}
+
+#calc-results div {
+    color: #FFF;
+}
+
+.calc-savings-col {
+    margin-bottom: 30px;
+}
+
+.results-heading {
+    font-weight: 600 !important;
+    font-size: 19px;
+    color: #000;
+    margin-bottom: 25px;
+    line-height: 1.5em;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+#calc-results div {
+    color: #FFF;
+}
+
+.calc-info {
+    margin-left: 10px;
+    vertical-align: middle;
+    cursor: help;
+    position: relative;
+}
+
+.calc-savings-col span {
+    font-size: 15px;
+    line-height: 145%;
+    font-family: 'Proxima Nova';
+    color: #fff;
+}
+
+.calc-savings-value {
+    font-size: 42px;
+    display: inline-block;
+    margin-bottom: 30px;
+    font-family: 'Proxima Nova';
+    font-weight: 700;
+}
+
+.results-heading {
+    font-weight: 400;
+    font-size: 19px;
+    color: #000;
+    margin-bottom: 25px;
+    line-height: 1.5em;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+.calc-info {
+    margin-left: 10px;
+    vertical-align: middle;
+    cursor: help;
+    position: relative;
+}
+
+.calc-savings-value {
+    font-size: 60px;
+    display: inline-block;
+    margin-bottom: 30px;
+    font-family: 'Proxima Nova';
+}
+
+.calc-savings-col {
+    margin-bottom: 30px;
+}
+
+.calc-range-labels {
+color: #54585A !important;
+}
+
+.results-heading {
+    font-weight: 400;
+    font-size: 19px;
+    color: #000;
+    margin-bottom: 25px;
+    line-height: 1.5em;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+.calc-info {
+    margin-left: 10px;
+    vertical-align: middle;
+    cursor: help;
+    position: relative;
+}
+
+.calc-savings-value {
+    font-size: 60px;
+    display: inline-block;
+    margin-bottom: 30px;
+    font-family: 'Proxima Nova';
+}
+
+input[type=range] {
+    height: 6px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    position: relative;
+    max-width: 300px;
+  background-color: #DDDDDD;
+  border-radius: 10px;
+}
+
+#calc-form {
+border: 1.07px solid #E8E8E8;
+border-right: 0px !important;
+border-radius: 20px 0px 0px 20px;
+}
+
+/* Toggle and Switcher */
+
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #DDD;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  height: 24px;
+  width: 24px;
+  border-radius: 25px;
+  background: #4f64ff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -9px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  border: none;
+}
+
+input[type=range] {
+  height: 6px;
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+  position: relative;
+  max-width: 300px;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: #DDD;
+  border-radius: 5px;
+  border: 0px solid #000000;
+}
+
+#calc-dcf-percent.collapsed{
+  max-height: 0px;
+}
+
+#calc-fees > div.calc-heading {
+color: #4F64FF;
+}
+
+/* SWITCH STYLES */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+  vertical-align: middle;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.toggle {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #7E7F82;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.toggle:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle {
+  background-color: #4f64ff;
+}
+
+input:focus + .toggle {
+  box-shadow: 0 0 1px #4f64ff;
+}
+
+input:checked + .toggle:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+  }
+  
+.calc-info:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background: #000;
+    color: #FFF;
+    width: 200px;
+    padding: 20px;
+    left: 50%;
+    transform: translateX(-70%);
+    border-radius: 8px;
+    top: 20px;
+    font-size: 15px;
+    z-index: 10;
+}
+
+/* Media Queries */
+
+@media only screen and (min-width: 50px) and (max-width: 990px) {
+#calc-holder {
+    display: contents !important;
+    justify-content: center !important;
+}
+
+#calc-form {
+    border-right: 1px solid #E8E8E8 !important;
+    border-radius: 20px 20px 0px 0px !important;
+}
+
+#calc-results {
+    border-radius: 0px 0px 20px 20px !important;
+}
+
+#calc-holder > div {
+    min-width: 100% !important;
+}
+
+#calc-grow-curve {
+width: 1729px;
+height: 1549px;
+}
+}
+    
+</style>
+
+<script>
+let donations = 40000; // average monthly donations
+let dcf = .3; // % of donors covering fees
+let effectiveRate;
+let givingSavings;
+let gcSavings;
+
+// assumptions
+const cardDonations = .7;
+const achDonations = .3;
+const avgComp = .0275;
+const avgGift = 250;
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  // listen for checkbox
+  document.querySelector("#calc-dcf-checkbox").addEventListener('change', function() {
+    if(this.checked){console.log('checked');
+      document.querySelector('#calc-dcf-percent').classList.remove('collapsed');
+      dcf = document.querySelector('#calc-dcf-slider').value/100;
+    }else{console.log('unchecked');
+      document.querySelector('#calc-dcf-percent').classList.add('collapsed');
+      dcf = 0;
+    }
+    updateResults();
+  });
+  // set default results
+  updateResults();
+});
+
+function updateDonation(val)
+{
+    // update html
+    document.getElementById('calc-donation-value').innerHTML = formatMoney(val);
+    // update value
+    donations = val;
+    updateResults();
+}
+
+function updateCoveredFees(val)
+{
+    // update html
+    document.getElementById('calc-dcf-value').innerHTML = val+'%';
+    // update value
+    dcf = val/100;
+    updateResults();
+}
+
+function updateResults()
+{
+  console.log('------------------');
+  console.log('dcf = '+dcf);
+  // calc ACH rate
+  let achRate = .01;
+  achVolume = (donations * (1 - (dcf * .99999))) * achDonations;
+  if(achVolume >= 10000){
+    switch(true){
+      case (achVolume < 20000): achRate = .0095; break; 
+      case (achVolume < 30000): achRate = .009; break;
+      case (achVolume < 40000): achRate = .0085; break;
+      case (achVolume < 50000): achRate = .008; break;
+      case (achVolume < 60000): achRate = .0075; break;
+      case (achVolume < 70000): achRate = .007; break;
+      case (achVolume < 80000): achRate = .0065; break;
+      case (achVolume < 90000): achRate = .006; break;
+      case (achVolume < 100000): achRate = .0055; break;
+      case (achVolume >= 100000): achRate = .005; break;
+    }
+  }console.log('achRate = '+achRate);
+  // calc total ACH cost
+  let achTotal = ( achVolume * achRate ) * (1 - dcf);console.log('achTotal = '+achTotal);
+  // calc card rate
+  let cardRate = .023;
+  cardVolume = (donations * (1 - (dcf * .99999))) * cardDonations;
+  if(cardVolume >= 10000){
+    switch(true){
+      case (cardVolume < 20000): cardRate = .022; break; 
+      case (cardVolume < 30000): cardRate = .0218; break;
+      case (cardVolume < 40000): cardRate = .0216; break;
+      case (cardVolume < 50000): cardRate = .0214; break;
+      case (cardVolume < 60000): cardRate = .0212; break;
+      case (cardVolume < 70000): cardRate = .021; break;
+      case (cardVolume < 80000): cardRate = .0208; break;
+      case (cardVolume < 90000): cardRate = .0206; break;
+      case (cardVolume < 100000): cardRate = .0204; break;
+      case (cardVolume < 110000): cardRate = .02; break;
+      case (cardVolume < 120000): cardRate = .0198; break;
+      case (cardVolume < 130000): cardRate = .0196; break;
+      case (cardVolume < 140000): cardRate = .0194; break;
+      case (cardVolume >= 140000): cardRate = .019; break;
+    }
+  }
+  // calc total card cost
+  console.log('cardRate = ' + cardRate);
+  let cardTransactions = cardVolume / avgGift;console.log('cardTransactions = '+cardTransactions);
+  let cardTotal = (( cardVolume * cardRate ) + (cardTransactions * .3)) * (1 - dcf);console.log('cardTotal = '+cardTotal);
+  // calc total cost
+  let total = achTotal + cardTotal;console.log('total = '+total);
+  // calc effective rate
+  effectiveRate = total / (donations * (1 - (dcf * .99999)));console.log('effectiveRate = '+effectiveRate);
+  // calc giving savings
+  givingSavings = ( effectiveRate * donations ) - ( avgComp * donations );
+  // calc grow curve savings
+  gcSavings = (( .01 - achRate ) * achVolume ) + (( .023 - cardRate) * cardVolume );
+  
+  // update html
+  document.getElementById('calc-rate-value').innerHTML = (Math.floor(effectiveRate*10000)/100)+'%';
+  document.getElementById('calc-savings-value').innerHTML = formatMoney(givingSavings*-1);
+  document.getElementById('calc-growcurve-value').innerHTML = formatMoney(gcSavings);
+
+  // update curve position
+  //document.getElementById('calc-grow-curve').style.left = (0-Math.floor(1400 / (effectiveRate * 100)))+'px';
+  document.getElementById('calc-grow-curve').style.left = 0-(800+(gcSavings*.85))+'px';
+}
+
+function formatMoney(val)
+{
+  val = Math.floor(val);
+   return '$'+val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+</script>
